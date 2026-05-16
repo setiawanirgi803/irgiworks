@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { 
@@ -21,11 +21,10 @@ import {
 import { useApp } from '@/context/AppContext';
 import { translations } from '@/lib/translations';
 
-export default function ProjectsManagement() {
+function ProjectsContent() {
   const { lang } = useApp();
   const t = translations[lang]?.admin || translations.id.admin;
   const searchParams = useSearchParams();
-  const router = useRouter();
   const action = searchParams.get('action');
   const editId = searchParams.get('id');
 
@@ -40,10 +39,10 @@ export default function ProjectsManagement() {
       try {
         const res = await fetch('/api/admin/projects');
         const data = await res.json();
-        setProjects(data.projects);
+        setProjects(data.projects || []);
         setUser(data.user);
         
-        if (editId) {
+        if (editId && data.projects) {
           const found = data.projects.find(p => p.id == editId);
           setEditProject(found);
         }
@@ -66,12 +65,12 @@ export default function ProjectsManagement() {
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-industrial-50 dark:bg-industrial-950">
-      {/* Sidebar - Shared */}
-      <aside className="w-72 flex-shrink-0 bg-white dark:bg-industrial-900 border-r border-industrial-200 dark:border-industrial-800 flex flex-col z-20 transition-colors duration-300">
+      {/* Sidebar */}
+      <aside className="w-72 flex-shrink-0 bg-white dark:bg-industrial-900 border-r border-industrial-200 dark:border-industrial-800 flex flex-col z-20">
         <div className="p-8">
-          <Link href="/" className="flex items-center space-x-3 group text-industrial-900 dark:text-white">
+          <Link href="/" className="flex items-center space-x-3 text-industrial-900 dark:text-white">
             <div className="bg-accent-teal p-2.5 rounded-xl text-white shadow-lg"><LayoutDashboard size={22} /></div>
-            <span className="font-black text-xl tracking-tighter">IRGI.ADMIN</span>
+            <span className="font-black text-xl tracking-tighter uppercase">Irgi.Admin</span>
           </Link>
         </div>
 
@@ -79,10 +78,10 @@ export default function ProjectsManagement() {
           <Link href="/admin/dashboard" className="flex items-center space-x-3 px-4 py-3 text-industrial-500 dark:text-industrial-400 hover:bg-industrial-100 dark:hover:bg-white/5 rounded-xl font-medium transition-all">
             <LayoutDashboard size={20} /> <span>{t.overview}</span>
           </Link>
-          <Link href="/admin/projects" className="flex items-center space-x-3 px-4 py-3 bg-accent-teal text-white rounded-xl font-bold shadow-lg shadow-teal-500/20">
+          <Link href="/admin/projects" className="flex items-center space-x-3 px-4 py-3 bg-accent-teal text-white rounded-xl font-bold shadow-lg">
             <Briefcase size={20} /> <span>{t.projects}</span>
           </Link>
-          {user.role_name === 'SuperAdmin' && (
+          {user?.role_name === 'SuperAdmin' && (
             <Link href="/admin/users" className="flex items-center space-x-3 px-4 py-3 text-industrial-500 dark:text-industrial-400 hover:bg-industrial-100 dark:hover:bg-white/5 rounded-xl font-medium transition-all">
               <Users size={20} /> <span>{t.users}</span>
             </Link>
@@ -102,9 +101,6 @@ export default function ProjectsManagement() {
               <h2 className="text-sm font-bold text-industrial-400 uppercase tracking-widest">{t.projects}</h2>
            </div>
            <div className="flex items-center space-x-4">
-              <Link href="/" target="_blank" className="flex items-center space-x-2 text-xs font-bold text-industrial-500 hover:text-accent-teal transition-colors">
-                <ExternalLink size={14} /> <span>Situs Live</span>
-              </Link>
               {(!action) && (
                 <Link href="/admin/projects?action=new" className="btn-primary py-2 px-4 text-xs">
                   <Plus size={14} className="mr-2 inline" /> {t.buttons.addNew}
@@ -113,9 +109,8 @@ export default function ProjectsManagement() {
            </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-10 bg-industrial-50/50 dark:bg-industrial-950 transition-colors duration-300">
+        <main className="flex-1 overflow-y-auto p-10 bg-industrial-50/50 dark:bg-industrial-950">
           {(!action) ? (
-            /* List View */
             <div className="bg-white dark:bg-industrial-900 rounded-3xl shadow-sm border border-industrial-100 dark:border-industrial-800 overflow-hidden">
                <div className="overflow-x-auto">
                   <table className="w-full text-left">
@@ -132,31 +127,25 @@ export default function ProjectsManagement() {
                       {projects.map((proj) => (
                         <tr key={proj.id} className="hover:bg-industrial-50 dark:hover:bg-industrial-800/50 transition-colors">
                           <td className="px-8 py-6">
-                             <div className="w-16 h-12 rounded-xl bg-industrial-100 dark:bg-industrial-800 overflow-hidden border border-industrial-200 dark:border-industrial-700">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                             <div className="w-16 h-12 rounded-xl bg-industrial-100 overflow-hidden border border-industrial-200">
                                 <img src={proj.image_url} alt="" className="w-full h-full object-cover" />
                              </div>
                           </td>
+                          <td className="px-8 py-6 font-bold text-industrial-900 dark:text-white">{lang === 'id' ? proj.title_id : proj.title_en}</td>
                           <td className="px-8 py-6">
-                             <div className="font-bold text-industrial-900 dark:text-white truncate max-w-[300px]">{lang === 'id' ? proj.title_id : proj.title_en}</div>
-                             <div className="text-[10px] text-industrial-400 truncate max-w-[200px] mt-1">{lang === 'id' ? proj.desc_id : proj.desc_en}</div>
-                          </td>
-                          <td className="px-8 py-6">
-                            <span className="px-3 py-1 bg-industrial-100 dark:bg-industrial-800 rounded-full text-[10px] font-bold uppercase text-industrial-500 dark:text-industrial-400 tracking-wider">
+                            <span className="px-3 py-1 bg-industrial-100 dark:bg-industrial-800 rounded-full text-[10px] font-bold uppercase text-industrial-500">
                               {translations[lang].portfolio.categories[proj.category] || proj.category}
                             </span>
                           </td>
                           <td className="px-8 py-6">
-                             <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${proj.status === 'active' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                             <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase ${proj.status === 'active' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
                                 {proj.status}
                              </span>
                           </td>
                           <td className="px-8 py-6 text-right">
-                             <div className="flex justify-end space-x-2">
-                                <Link href={`/admin/projects?action=edit&id=${proj.id}`} className="p-2.5 text-blue-500 hover:bg-blue-500/10 rounded-xl transition-all">
-                                  <Edit3 size={18} />
-                                </Link>
-                             </div>
+                             <Link href={`/admin/projects?action=edit&id=${proj.id}`} className="p-2.5 text-blue-500 hover:bg-blue-500/10 rounded-xl">
+                                <Edit3 size={18} />
+                             </Link>
                           </td>
                         </tr>
                       ))}
@@ -165,82 +154,35 @@ export default function ProjectsManagement() {
                </div>
             </div>
           ) : (
-            /* Form View - Bilingual Fields */
             <div className="max-w-4xl mx-auto pb-20">
-               <div className="bg-white dark:bg-industrial-900 rounded-3xl shadow-2xl border border-industrial-100 dark:border-industrial-800 overflow-hidden">
-                  <div className="p-10 border-b border-industrial-100 dark:border-industrial-800 flex justify-between items-center bg-industrial-50/50 dark:bg-industrial-900/50">
-                     <h2 className="text-2xl font-black text-industrial-900 dark:text-white tracking-tighter">{action === 'edit' ? t.form.edit : t.form.new}</h2>
-                     <Link href="/admin/projects" className="w-10 h-10 flex items-center justify-center bg-white dark:bg-industrial-800 rounded-full text-industrial-400 hover:text-industrial-900 shadow-sm"><X size={20} /></Link>
-                  </div>
-
-                  <form action="/api/admin/projects/save" method="POST" className="p-10 space-y-10">
+               <div className="bg-white dark:bg-industrial-900 rounded-3xl shadow-2xl p-10">
+                  <form action="/api/admin/projects/save" method="POST" className="space-y-8">
                      <input type="hidden" name="id" value={editProject?.id || ''} />
-                     
-                     {/* Bilingual Titles */}
                      <div className="grid md:grid-cols-2 gap-8">
                         <div className="space-y-2">
-                           <label className="flex items-center text-[10px] font-black text-industrial-400 uppercase tracking-widest ml-1">
-                              <span className="w-4 h-3 bg-red-600 mr-2 rounded-sm border border-red-800"></span> Judul Proyek (Indonesia)
-                           </label>
-                           <input name="title_id" required defaultValue={editProject?.title_id || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4 text-industrial-900 dark:text-white focus:outline-none focus:border-accent-teal transition-all font-medium" placeholder="Contoh: Instalasi Panel Listrik" />
+                           <label className="text-[10px] font-black text-industrial-400 uppercase tracking-widest">Judul (ID)</label>
+                           <input name="title_id" required defaultValue={editProject?.title_id || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4" />
                         </div>
                         <div className="space-y-2">
-                           <label className="flex items-center text-[10px] font-black text-industrial-400 uppercase tracking-widest ml-1">
-                              <Globe size={12} className="mr-2 text-blue-500" /> Project Title (English)
-                           </label>
-                           <input name="title_en" required defaultValue={editProject?.title_en || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4 text-industrial-900 dark:text-white focus:outline-none focus:border-accent-teal transition-all font-medium" placeholder="Example: Electrical Panel Installation" />
+                           <label className="text-[10px] font-black text-industrial-400 uppercase tracking-widest">Title (EN)</label>
+                           <input name="title_en" required defaultValue={editProject?.title_en || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4" />
                         </div>
                      </div>
-
-                     {/* Category & Status */}
                      <div className="grid md:grid-cols-2 gap-8">
-                        <div className="space-y-2">
-                           <label className="text-[10px] font-black text-industrial-400 uppercase tracking-widest ml-1">{t.form.cat}</label>
-                           <select name="category" defaultValue={editProject?.category || 'Electrical Installation'} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4 text-industrial-900 dark:text-white focus:outline-none focus:border-accent-teal transition-all font-medium appearance-none">
-                              {categories.map(c => <option key={c} value={c}>{translations[lang].portfolio.categories[c] || c}</option>)}
-                           </select>
-                        </div>
-                        <div className="space-y-2">
-                           <label className="text-[10px] font-black text-industrial-400 uppercase tracking-widest ml-1">{t.form.status}</label>
-                           <select name="status" defaultValue={editProject?.status || 'active'} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4 text-industrial-900 dark:text-white focus:outline-none focus:border-accent-teal transition-all font-medium appearance-none">
-                              <option value="active">Active</option>
-                              <option value="archived">Archived</option>
-                           </select>
-                        </div>
+                        <select name="category" defaultValue={editProject?.category || 'Electrical Installation'} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4">
+                           {categories.map(c => <option key={c} value={c}>{translations[lang].portfolio.categories[c] || c}</option>)}
+                        </select>
+                        <select name="status" defaultValue={editProject?.status || 'active'} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4">
+                           <option value="active">Active</option>
+                           <option value="archived">Archived</option>
+                        </select>
                      </div>
-
-                     {/* Image URL */}
-                     <div className="space-y-2">
-                        <label className="text-[10px] font-black text-industrial-400 uppercase tracking-widest ml-1">{t.form.image}</label>
-                        <div className="relative">
-                           <ImageIcon className="absolute left-6 top-1/2 -translate-y-1/2 text-industrial-400" size={18} />
-                           <input name="image_url" defaultValue={editProject?.image_url || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl py-4 pl-14 pr-6 text-industrial-900 dark:text-white focus:outline-none focus:border-accent-teal transition-all font-medium" placeholder="https://images.unsplash.com/..." />
-                        </div>
-                     </div>
-
-                     {/* Bilingual Descriptions */}
-                     <div className="space-y-8">
-                        <div className="space-y-2">
-                           <label className="flex items-center text-[10px] font-black text-industrial-400 uppercase tracking-widest ml-1">
-                              <span className="w-4 h-3 bg-red-600 mr-2 rounded-sm border border-red-800"></span> Deskripsi Proyek (Indonesia)
-                           </label>
-                           <textarea name="desc_id" rows={4} required defaultValue={editProject?.desc_id || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4 text-industrial-900 dark:text-white focus:outline-none focus:border-accent-teal transition-all font-medium" placeholder="Jelaskan detail pekerjaan teknis Anda..."></textarea>
-                        </div>
-                        <div className="space-y-2">
-                           <label className="flex items-center text-[10px] font-black text-industrial-400 uppercase tracking-widest ml-1">
-                              <Globe size={12} className="mr-2 text-blue-500" /> Project Description (English)
-                           </label>
-                           <textarea name="desc_en" rows={4} required defaultValue={editProject?.desc_en || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4 text-industrial-900 dark:text-white focus:outline-none focus:border-accent-teal transition-all font-medium" placeholder="Describe the technical implementation details..."></textarea>
-                        </div>
-                     </div>
-
-                     <div className="flex gap-4 pt-6">
-                        <button type="submit" className="flex-1 btn-primary py-5 rounded-2xl text-lg font-black shadow-xl">
-                           <Save size={20} className="mr-3 inline" /> {t.form.save}
-                        </button>
-                        <Link href="/admin/projects" className="flex-1 bg-industrial-100 dark:bg-industrial-800 text-industrial-600 dark:text-industrial-300 py-5 rounded-2xl text-center font-bold hover:bg-industrial-200 transition-all">
-                           {t.form.cancel}
-                        </Link>
+                     <input name="image_url" defaultValue={editProject?.image_url || ''} placeholder="Image URL" className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4" />
+                     <textarea name="desc_id" rows={4} required defaultValue={editProject?.desc_id || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4" placeholder="Deskripsi (ID)"></textarea>
+                     <textarea name="desc_en" rows={4} required defaultValue={editProject?.desc_en || ''} className="w-full bg-industrial-50 dark:bg-industrial-800/50 border border-industrial-200 dark:border-industrial-700 rounded-2xl px-6 py-4" placeholder="Description (EN)"></textarea>
+                     <div className="flex gap-4">
+                        <button type="submit" className="flex-1 btn-primary py-4 rounded-2xl">{t.form.save}</button>
+                        <Link href="/admin/projects" className="flex-1 bg-industrial-100 text-center py-4 rounded-2xl font-bold">{t.form.cancel}</Link>
                      </div>
                   </form>
                </div>
@@ -249,5 +191,13 @@ export default function ProjectsManagement() {
         </main>
       </div>
     </div>
+  );
+}
+
+export default function ProjectsManagement() {
+  return (
+    <Suspense fallback={<div className="flex h-screen w-full items-center justify-center bg-industrial-50 dark:bg-industrial-950"><Loader2 className="animate-spin text-accent-teal" size={40} /></div>}>
+      <ProjectsContent />
+    </Suspense>
   );
 }
