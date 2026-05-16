@@ -1,0 +1,332 @@
+{
+  "roles": [
+    {
+      "id": 1,
+      "role_name": "SuperAdmin"
+    },
+    {
+      "id": 2,
+      "role_name": "Editor"
+    }
+  ],
+  "users": [
+    {
+      "id": 1778921123038.3035,
+      "username": "admin",
+      "password_hash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+      "role_id": 1
+    },
+    {
+      "id": 1778921123040.3652,
+      "username": "editor",
+      "password_hash": "ef5e5a1fb95055e0e56cccf98a41e784a132c14e7f6e1ba244302f0e72b29baf",
+      "role_id": 2
+    }
+  ],
+  "projects": [
+    {
+      "id": 1778921123041.2646,
+      "title": "Smart Home Electrical Panel Assembly",
+      "category": "Electrical Installation",
+      "description_detail": "Full assembly and wiring of a custom smart home electrical panel, integrating IoT controls for lighting and climate.",
+      "image_url": "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.041Z",
+      "title_id": "Smart Home Electrical Panel Assembly",
+      "title_en": "Smart Home Electrical Panel Assembly",
+      "desc_id": "Full assembly and wiring of a custom smart home electrical panel, integrating IoT controls for lighting and climate.",
+      "desc_en": "Full assembly and wiring of a custom smart home electrical panel, integrating IoT controls for lighting and climate."
+    },
+    {
+      "id": 1778921123044.6453,
+      "title": "Industrial Circuit Troubleshooting",
+      "category": "Electrical Installation",
+      "description_detail": "Maintenance and repair of a faulty industrial power circuit in a manufacturing plant, restoring full operation within 4 hours.",
+      "image_url": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.044Z",
+      "title_id": "Industrial Circuit Troubleshooting",
+      "title_en": "Industrial Circuit Troubleshooting",
+      "desc_id": "Maintenance and repair of a faulty industrial power circuit in a manufacturing plant, restoring full operation within 4 hours.",
+      "desc_en": "Maintenance and repair of a faulty industrial power circuit in a manufacturing plant, restoring full operation within 4 hours."
+    },
+    {
+      "id": 1778921123045.83,
+      "title": "Corporate Office LAN Deployment",
+      "category": "Networking",
+      "description_detail": "Deployment of a high-speed Local Area Network (LAN) for a 3-story corporate office, including structured cabling and server rack setup.",
+      "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.045Z",
+      "title_id": "Corporate Office LAN Deployment",
+      "title_en": "Corporate Office LAN Deployment",
+      "desc_id": "Deployment of a high-speed Local Area Network (LAN) for a 3-story corporate office, including structured cabling and server rack setup.",
+      "desc_en": "Deployment of a high-speed Local Area Network (LAN) for a 3-story corporate office, including structured cabling and server rack setup."
+    },
+    {
+      "id": 1778921123047.5176,
+      "title": "Fiber Optic Signal Troubleshooting",
+      "category": "Networking",
+      "description_detail": "Diagnostic and repair of fiber optic signal loss in a commercial building using OTDR testing and fusion splicing.",
+      "image_url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.047Z",
+      "title_id": "Fiber Optic Signal Troubleshooting",
+      "title_en": "Fiber Optic Signal Troubleshooting",
+      "desc_id": "Diagnostic and repair of fiber optic signal loss in a commercial building using OTDR testing and fusion splicing.",
+      "desc_en": "Diagnostic and repair of fiber optic signal loss in a commercial building using OTDR testing and fusion splicing."
+    },
+    {
+      "id": 1778921123048.8079,
+      "title": "Central HVAC Installation",
+      "category": "Cooling (HVAC)",
+      "description_detail": "Installation of a 10-ton central HVAC system for a commercial warehouse, including ductwork design and refrigerant charging.",
+      "image_url": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.048Z",
+      "title_id": "Central HVAC Installation",
+      "title_en": "Central HVAC Installation",
+      "desc_id": "Installation of a 10-ton central HVAC system for a commercial warehouse, including ductwork design and refrigerant charging.",
+      "desc_en": "Installation of a 10-ton central HVAC system for a commercial warehouse, including ductwork design and refrigerant charging."
+    },
+    {
+      "id": 1778921123049.2834,
+      "title": "Cold Storage Maintenance",
+      "category": "Cooling (HVAC)",
+      "description_detail": "Scheduled maintenance of a industrial cold storage unit, including compressor inspection and sensor calibration.",
+      "image_url": "https://images.unsplash.com/photo-1604754742629-3e5728249d73?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.049Z",
+      "title_id": "Cold Storage Maintenance",
+      "title_en": "Cold Storage Maintenance",
+      "desc_id": "Scheduled maintenance of a industrial cold storage unit, including compressor inspection and sensor calibration.",
+      "desc_en": "Scheduled maintenance of a industrial cold storage unit, including compressor inspection and sensor calibration."
+    },
+    {
+      "id": 1778921123050.2075,
+      "title": "Industrial Water Heater Setup",
+      "category": "Heating",
+      "description_detail": "Setup of a high-capacity industrial water heating system for a textile factory, focusing on energy efficiency.",
+      "image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.050Z",
+      "title_id": "Industrial Water Heater Setup",
+      "title_en": "Industrial Water Heater Setup",
+      "desc_id": "Setup of a high-capacity industrial water heating system for a textile factory, focusing on energy efficiency.",
+      "desc_en": "Setup of a high-capacity industrial water heating system for a textile factory, focusing on energy efficiency."
+    },
+    {
+      "id": 1778921123051.8728,
+      "title": "Boiler System Troubleshooting",
+      "category": "Heating",
+      "description_detail": "Rapid troubleshooting and repair of a malfunctioning boiler burner, ensuring minimal downtime for the client.",
+      "image_url": "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.051Z",
+      "title_id": "Boiler System Troubleshooting",
+      "title_en": "Boiler System Troubleshooting",
+      "desc_id": "Rapid troubleshooting and repair of a malfunctioning boiler burner, ensuring minimal downtime for the client.",
+      "desc_en": "Rapid troubleshooting and repair of a malfunctioning boiler burner, ensuring minimal downtime for the client."
+    },
+    {
+      "id": 1778921123054.2102,
+      "title": "Commercial Piping Layout",
+      "category": "Plumbing",
+      "description_detail": "Design and installation of a comprehensive clean water distribution layout for a new luxury apartment complex.",
+      "image_url": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.054Z",
+      "title_id": "Commercial Piping Layout",
+      "title_en": "Commercial Piping Layout",
+      "desc_id": "Design and installation of a comprehensive clean water distribution layout for a new luxury apartment complex.",
+      "desc_en": "Design and installation of a comprehensive clean water distribution layout for a new luxury apartment complex."
+    },
+    {
+      "id": 1778921123059.899,
+      "title": "Drainage System Maintenance",
+      "category": "Plumbing",
+      "description_detail": "Restoration of a blocked commercial drainage system using high-pressure jetting and camera inspection.",
+      "image_url": "https://images.unsplash.com/photo-1542013936693-884638324202?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:45:23.059Z",
+      "title_id": "Drainage System Maintenance",
+      "title_en": "Drainage System Maintenance",
+      "desc_id": "Restoration of a blocked commercial drainage system using high-pressure jetting and camera inspection.",
+      "desc_en": "Restoration of a blocked commercial drainage system using high-pressure jetting and camera inspection."
+    },
+    {
+      "id": 1778921939544.5825,
+      "title": "Smart Home Electrical Panel Assembly",
+      "category": "Electrical Installation",
+      "description_detail": "Full assembly and wiring of a custom smart home electrical panel, integrating IoT controls for lighting and climate.",
+      "image_url": "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.544Z",
+      "title_id": "Smart Home Electrical Panel Assembly",
+      "title_en": "Smart Home Electrical Panel Assembly",
+      "desc_id": "Full assembly and wiring of a custom smart home electrical panel, integrating IoT controls for lighting and climate.",
+      "desc_en": "Full assembly and wiring of a custom smart home electrical panel, integrating IoT controls for lighting and climate."
+    },
+    {
+      "id": 1778921939547.1792,
+      "title": "Industrial Circuit Troubleshooting",
+      "category": "Electrical Installation",
+      "description_detail": "Maintenance and repair of a faulty industrial power circuit in a manufacturing plant, restoring full operation within 4 hours.",
+      "image_url": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.547Z",
+      "title_id": "Industrial Circuit Troubleshooting",
+      "title_en": "Industrial Circuit Troubleshooting",
+      "desc_id": "Maintenance and repair of a faulty industrial power circuit in a manufacturing plant, restoring full operation within 4 hours.",
+      "desc_en": "Maintenance and repair of a faulty industrial power circuit in a manufacturing plant, restoring full operation within 4 hours."
+    },
+    {
+      "id": 1778921939548.7795,
+      "title": "Corporate Office LAN Deployment",
+      "category": "Networking",
+      "description_detail": "Deployment of a high-speed Local Area Network (LAN) for a 3-story corporate office, including structured cabling and server rack setup.",
+      "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.548Z",
+      "title_id": "Corporate Office LAN Deployment",
+      "title_en": "Corporate Office LAN Deployment",
+      "desc_id": "Deployment of a high-speed Local Area Network (LAN) for a 3-story corporate office, including structured cabling and server rack setup.",
+      "desc_en": "Deployment of a high-speed Local Area Network (LAN) for a 3-story corporate office, including structured cabling and server rack setup."
+    },
+    {
+      "id": 1778921939549.1099,
+      "title": "Fiber Optic Signal Troubleshooting",
+      "category": "Networking",
+      "description_detail": "Diagnostic and repair of fiber optic signal loss in a commercial building using OTDR testing and fusion splicing.",
+      "image_url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.549Z",
+      "title_id": "Fiber Optic Signal Troubleshooting",
+      "title_en": "Fiber Optic Signal Troubleshooting",
+      "desc_id": "Diagnostic and repair of fiber optic signal loss in a commercial building using OTDR testing and fusion splicing.",
+      "desc_en": "Diagnostic and repair of fiber optic signal loss in a commercial building using OTDR testing and fusion splicing."
+    },
+    {
+      "id": 1778921939550.2773,
+      "title": "Central HVAC Installation",
+      "category": "Cooling (HVAC)",
+      "description_detail": "Installation of a 10-ton central HVAC system for a commercial warehouse, including ductwork design and refrigerant charging.",
+      "image_url": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.550Z",
+      "title_id": "Central HVAC Installation",
+      "title_en": "Central HVAC Installation",
+      "desc_id": "Installation of a 10-ton central HVAC system for a commercial warehouse, including ductwork design and refrigerant charging.",
+      "desc_en": "Installation of a 10-ton central HVAC system for a commercial warehouse, including ductwork design and refrigerant charging."
+    },
+    {
+      "id": 1778921939557.2056,
+      "title": "Cold Storage Maintenance",
+      "category": "Cooling (HVAC)",
+      "description_detail": "Scheduled maintenance of a industrial cold storage unit, including compressor inspection and sensor calibration.",
+      "image_url": "https://images.unsplash.com/photo-1604754742629-3e5728249d73?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.557Z",
+      "title_id": "Cold Storage Maintenance",
+      "title_en": "Cold Storage Maintenance",
+      "desc_id": "Scheduled maintenance of a industrial cold storage unit, including compressor inspection and sensor calibration.",
+      "desc_en": "Scheduled maintenance of a industrial cold storage unit, including compressor inspection and sensor calibration."
+    },
+    {
+      "id": 1778921939559.3127,
+      "title": "Industrial Water Heater Setup",
+      "category": "Heating",
+      "description_detail": "Setup of a high-capacity industrial water heating system for a textile factory, focusing on energy efficiency.",
+      "image_url": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.559Z",
+      "title_id": "Industrial Water Heater Setup",
+      "title_en": "Industrial Water Heater Setup",
+      "desc_id": "Setup of a high-capacity industrial water heating system for a textile factory, focusing on energy efficiency.",
+      "desc_en": "Setup of a high-capacity industrial water heating system for a textile factory, focusing on energy efficiency."
+    },
+    {
+      "id": 1778921939562.7754,
+      "title": "Boiler System Troubleshooting",
+      "category": "Heating",
+      "description_detail": "Rapid troubleshooting and repair of a malfunctioning boiler burner, ensuring minimal downtime for the client.",
+      "image_url": "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.562Z",
+      "title_id": "Boiler System Troubleshooting",
+      "title_en": "Boiler System Troubleshooting",
+      "desc_id": "Rapid troubleshooting and repair of a malfunctioning boiler burner, ensuring minimal downtime for the client.",
+      "desc_en": "Rapid troubleshooting and repair of a malfunctioning boiler burner, ensuring minimal downtime for the client."
+    },
+    {
+      "id": 1778921939570.524,
+      "title": "Commercial Piping Layout",
+      "category": "Plumbing",
+      "description_detail": "Design and installation of a comprehensive clean water distribution layout for a new luxury apartment complex.",
+      "image_url": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.570Z",
+      "title_id": "Commercial Piping Layout",
+      "title_en": "Commercial Piping Layout",
+      "desc_id": "Design and installation of a comprehensive clean water distribution layout for a new luxury apartment complex.",
+      "desc_en": "Design and installation of a comprehensive clean water distribution layout for a new luxury apartment complex."
+    },
+    {
+      "id": 1778921939571.2756,
+      "title": "Drainage System Maintenance",
+      "category": "Plumbing",
+      "description_detail": "Restoration of a blocked commercial drainage system using high-pressure jetting and camera inspection.",
+      "image_url": "https://images.unsplash.com/photo-1542013936693-884638324202?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T08:58:59.571Z",
+      "title_id": "Drainage System Maintenance",
+      "title_en": "Drainage System Maintenance",
+      "desc_id": "Restoration of a blocked commercial drainage system using high-pressure jetting and camera inspection.",
+      "desc_en": "Restoration of a blocked commercial drainage system using high-pressure jetting and camera inspection."
+    },
+    {
+      "id": 21,
+      "title_id": "Perakitan Panel Listrik Smart Home",
+      "title_en": "Smart Home Electrical Panel Assembly",
+      "category": "Electrical Installation",
+      "desc_id": "Perakitan dan pengabelan lengkap panel listrik pintar kustom, mengintegrasikan kontrol IoT untuk pencahayaan dan iklim.",
+      "desc_en": "Full assembly and wiring of a custom smart home electrical panel, integrating IoT controls for lighting and climate.",
+      "image_url": "https://images.unsplash.com/photo-1558467523-46113f1fef72?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T09:38:13.869Z"
+    },
+    {
+      "id": 22,
+      "title_id": "Troubleshooting Sirkuit Industri",
+      "title_en": "Industrial Circuit Troubleshooting",
+      "category": "Electrical Installation",
+      "desc_id": "Pemeliharaan dan perbaikan sirkuit daya industri yang rusak di pabrik manufaktur, memulihkan operasi penuh dalam 4 jam.",
+      "desc_en": "Maintenance and repair of a faulty industrial power circuit in a manufacturing plant, restoring full operation within 4 hours.",
+      "image_url": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T09:38:13.887Z"
+    },
+    {
+      "id": 23,
+      "title_id": "Pemasangan LAN Kantor Korporat",
+      "title_en": "Corporate Office LAN Deployment",
+      "category": "Networking",
+      "desc_id": "Penerapan Jaringan Area Lokal (LAN) berkecepatan tinggi untuk kantor korporat 3 lantai, termasuk pengabelan terstruktur.",
+      "desc_en": "Deployment of a high-speed Local Area Network (LAN) for a 3-story corporate office, including structured cabling and server rack setup.",
+      "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T09:38:13.892Z"
+    },
+    {
+      "id": 24,
+      "title_id": "Optimalisasi AC Sentral Gedung",
+      "title_en": "Commercial Central AC Optimization",
+      "category": "Cooling (HVAC)",
+      "desc_id": "Penyetelan presisi sistem chiller sentral untuk mengurangi biaya operasional sebesar 20% tanpa mengurangi kenyamanan.",
+      "desc_en": "Precision tuning of central chiller systems to reduce operational costs by 20% while maintaining optimal climate comfort.",
+      "image_url": "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=800",
+      "status": "active",
+      "date_created": "2026-05-16T09:38:13.894Z"
+    }
+  ]
+}
